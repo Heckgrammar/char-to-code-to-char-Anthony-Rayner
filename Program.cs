@@ -17,6 +17,7 @@ namespace CHAR_TO_CODE_TO_CHAR_FRAMEWORK
             Console.WriteLine("[A] Convert codes to characters.\n[B] Convert characters to codes.");
             string input = Console.ReadLine().ToLower();
 
+
             if (input == "A")
             {
                 // Get input
