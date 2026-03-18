@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -11,16 +12,48 @@ namespace CHAR_TO_CODE_TO_CHAR_FRAMEWORK
     {
         static void Main(string[] args)
         {
-            //Challenge 1: output the ASCII codes for any string input
-
             //Challenge 2: ouput the Character for any input character codes
+            // Choose between conversions
+            Console.WriteLine("[A] Convert codes to characters.\n[B] Convert characters to codes.");
+            string input = Console.ReadLine().ToLower();
 
-            Console.Write("Please enter character(s): ");
-            string input = Console.ReadLine();
-            foreach (char c in input)
+            if (input == "A")
             {
-                Console.WriteLine(CharToCode(c));
+                // Get input
+                Console.Write("Please enter code(s), seperated with spaces: ");
+                input = Console.ReadLine();
+
+                // Convert
+                int i = 0;
+                char c = input[0];
+                string codeString = "";
+                int codeInt = 0;
+                string translation = "";
+                while (c != ' ')
+                {
+                    codeString += c;
+
+                    i++;
+                    c = input[i];
+                }
+                codeInt = Convert.ToInt32(codeString);
+                translation += (char)codeInt;
+                i++;
+                c = input[i];
             }
+            else
+            {
+                // Get input
+                Console.Write("Please enter character(s): ");
+                input = Console.ReadLine();
+
+                // Convert
+                foreach (char c in input)
+                {
+                    Console.WriteLine(CharToCode(c));
+                }
+            }
+            
         }
 
         static Int32 CharToCode(char codeChar)
