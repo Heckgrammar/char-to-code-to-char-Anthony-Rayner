@@ -18,7 +18,7 @@ namespace CHAR_TO_CODE_TO_CHAR_FRAMEWORK
             string input = Console.ReadLine().ToLower();
 
 
-            if (input == "A")
+            if (input == "a")
             {
                 // Get input
                 Console.Write("Please enter code(s), seperated with spaces: ");
@@ -27,20 +27,35 @@ namespace CHAR_TO_CODE_TO_CHAR_FRAMEWORK
                 // Convert
                 int i = 0;
                 char c = input[0];
-                string codeString = "";
+                string codeString;
                 int codeInt = 0;
                 string translation = "";
-                while (c != ' ')
-                {
-                    codeString += c;
 
+                while (true)
+                {
+                    codeString = "";
+                    while (c != ' ')
+                    {
+                        codeString += c;
+
+                        i++;
+                        if (i >= input.Length)
+                        {
+                            break;
+                        }
+                        c = input[i];
+                    }
+                    codeInt = Convert.ToInt32(codeString);
+                    translation += (char)codeInt;
+                    if (i >= input.Length)
+                    {
+                        break;
+                    }
                     i++;
                     c = input[i];
                 }
-                codeInt = Convert.ToInt32(codeString);
-                translation += (char)codeInt;
-                i++;
-                c = input[i];
+
+                Console.WriteLine(translation);
             }
             else
             {
